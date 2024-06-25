@@ -1,0 +1,42 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  .left1 {
+    position: relative;
+    margin-top: 1%;
+    margin-left: 35%;
+    margin-right: 10px;
+  }
+
+  .left2 {
+    position: relative;
+    margin-top: 1%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .left3 {
+    position: relative;
+    margin-top: 1%;
+    display: inline-block;
+  }
+  .left4 {
+    position: relative;
+    display: block;
+    margin-left: 35%;
+  }
+
+  .left1, .left2, .left3 {
+    margin-bottom: 5%;
+}
+  .top-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1%;
+}
+  
+  
