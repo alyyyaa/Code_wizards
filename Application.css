@@ -1,0 +1,196 @@
+.body11{
+    margin: 0;
+    padding: 0;
+    width:100vw;
+    height: 100vh;
+    background-color: #D3DEFE;
+}
+    .container_fon {
+        width:100%;
+        height: 100%;
+        display: flex;
+        
+        }
+
+    .text_form{
+        color: #97A1B4;
+        font-size: 20px;
+        font-weight: regular;
+    }
+
+    .form_application {
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 80%;
+    height: auto;
+    border-radius: 50px;
+    font-family: 'Open Sans';
+    font-size: 25px;
+    font-weight: regular;
+    color: #507699;
+    padding: 3%;
+     margin: 7% 7%; 
+    }
+    .form_right{
+    float: right;
+    position: relative;
+    width: 50%;
+    }
+    .form_left{
+        float: left;
+        position: relative;
+        width: 50%;
+
+    }
+    .apll{
+        position: relative;
+        margin-top: 20%;
+    }
+    .input2 {
+    border-radius: 20px;
+    color: #9D9D9D;
+    font-family: 'Open Sans';
+    font-size: 20px;
+    background-color: #E0E8FF;
+    border: none;
+    width: 85%;
+    height: 40px;
+    padding-left: 10px;
+    outline:none;
+    margin-bottom: 8%;
+    }
+    .text_input{
+    border-radius: 20px;
+    color: #9D9D9D;
+    font-family: 'Open Sans';
+    font-size: 20px;
+    background-color: #E0E8FF;
+    border: none;
+    width: 85%;;
+    height: 250px;
+    padding-left: 10px;
+    padding-top: 10px;
+    outline:none;
+    margin-bottom: 8%;
+    }
+    
+    #textbox {
+    position: absolute;
+    border-radius: 40px;
+    width: 500px;
+    height: 60px;
+    /* margin-top: 5%;
+    margin-left: 7%;  */
+    border: 2px solid #474791;
+    }
+    .d1 {
+        position: absolute;
+        padding: 10px;
+        margin-top: 4%;
+        margin-left: 4%;
+    }
+
+    .send {
+    background-color: #938FEC;
+    font-family: 'Open Sans';
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-radius: 40px;
+    border: none;
+    width: 290px;
+    height: 60px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 25%;
+    margin-left: 17%;
+    }
+    
+    .modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-duration: 300ms;
+    }
+    
+    .content {
+    background-color: #FFFFFF;
+    height: 370px;
+    width: 700px;
+    color: #507699;
+    font-family: 'Open Sans';
+    font-size: 35px;
+    font-weight: medium;
+    border-radius: 20px;
+    text-align: center;
+    /* padding-top: 20px; */
+    line-height: 60px;
+    padding: 3%;
+    }
+    .main {
+    background: none;
+    cursor: pointer;
+    border: none;
+    margin-top: 3%;
+    margin-left: 3%;
+    position: absolute;
+    }
+    .Copy {
+    position: relative; 
+    background-color: #FFFFFF;
+    cursor: pointer;
+    margin-left: 510px;
+    }
+    .icon{
+        color: #000000;
+        font-size: 20px;
+        font-weight: bold;
+        position: absolute;
+    }
+    .arrow-left {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-left: 2px solid #000;
+        border-bottom: 2px solid #000; 
+        transform: rotate(45deg); 
+
+      }
+
+    @media screen and (max-width: 1230px) {
+    .apll{
+        width: 80%;
+        height: 80%;
+        }
+    }
+    @media screen and (min-width: 1600px){
+        .apll{
+            width: 90%;
+            height: 90%;
+            }
+    }
+    @media screen and (min-width: 1800px){
+    .text_form,.input2,.text_input,.icon{
+        font-size: 30px;
+    }
+    .send{
+        font-size: 30px;
+        width: 320px;
+        height: 65px;
+    }
+    .input-file-placeholder{
+        font-size: 25px;
+    }
+    .input2{
+        height: 50px;
+    }
+    .text_input{
+        height: 300px;
+    }
+    }
