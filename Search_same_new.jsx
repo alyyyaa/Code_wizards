@@ -10,31 +10,25 @@ import { IoCheckmarkDone } from "react-icons/io5";
 import { LiaExclamationSolid } from "react-icons/lia";
 import '../styles/Personal_account.css';
 import '../styles/Table_same.css';
+import Pagination from './Pagination'; 
 import book from './book.png';
 
 function SearchSameNew() {
     const initialData = [
-        {
-            id: 1,
-            date: '21.03.2024',
-            name: 'Аноним',
-            action: 'Просмотр',
-            selected: false 
-        },
-        {
-            id: 2,
-            date: '22.03.2024',
-            name: 'Анатолий Некрасов',
-            action: 'Просмотр',
-            selected: false 
-        }
+        { id: 1, date: '21.03.2024', name: 'Аноним', action: 'Просмотр', selected: false, keywords: ['Невкусный', 'кофе'] },
+        { id: 2, date: '22.03.2024', name: 'Анатолий Некрасов', action: 'Просмотр', selected: false, keywords: ['Невкусный', 'кофе'] },
+        { id: 3, date: '23.03.2024', name: 'Иван Иванов', action: 'Просмотр', selected: false, keywords: ['Плохое', 'обслуживание'] },
+        { id: 4, date: '24.03.2024', name: 'Петр Петров', action: 'Просмотр', selected: false, keywords: ['Плохое', 'обслуживание'] },
+        { id: 5, date: '25.03.2024', name: 'Сергей Сергеев', action: 'Просмотр', selected: false, keywords: ['Плохое', 'обслуживание'] },
+        { id: 6, date: '26.03.2024', name: 'Сергей Сергеев', action: 'Просмотр', selected: false, keywords: ['', 'пол'] },
     ];
 
     const [searchValue, setSearchValue] = useState("");
     const [records, setRecords] = useState(initialData);
     const [iconActive, setIconActive] = useState(false);
-    const [commonWords, setCommonWords] = useState(["Невкусно", "заменить", "ужасно"]);
     const [selectedRows, setSelectedRows] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [topicsArray, setTopicsArray] = useState([]);
 
     const placeholder = searchValue.length === 0 ? "Найти обращение..." : "";
 
@@ -88,9 +82,36 @@ function SearchSameNew() {
         setSelectedRows(selected);
     };
 
-    const handleThirdButtonClick = () => {
-        console.log("-");
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
     };
+
+    const handleThirdButtonClick = () => {
+        
+    };
+
+    useEffect(() => {
+        // Группировка данных по ключевым словам
+        const groupedData = records.reduce((acc, record) => {
+            const key = record.keywords.join(" ");
+            if (!acc[key]) {
+                acc[key] = [];
+            }
+            acc[key].push(record);
+            return acc;
+        }, {});
+
+        // Преобразование сгруппированных данных в массив для пагинации
+        const newTopicsArray = Object.keys(groupedData).map(topic => ({
+            topic,
+            records: groupedData[topic]
+        }));
+
+        setTopicsArray(newTopicsArray);
+    }, [records]);
+
+    const totalPages = topicsArray.length;
+    const currentTopicData = topicsArray[currentPage - 1];
 
     return (
         <div className="personal-account-container">
@@ -129,7 +150,7 @@ function SearchSameNew() {
                     </div>
                     <div className="data-section">
                         <h1 className="custom-table-name">
-                            Новые обращения
+                            {currentTopicData?.topic}
                             <button
                                 className={`custom-icon-button ${iconActive ? 'active' : ''}`} 
                                 onClick={handleIconClick}
@@ -155,14 +176,19 @@ function SearchSameNew() {
                             </div>
                             <div className="common-words-content">
                                 <h2>Ключевые слова:</h2>
-                                <p>{commonWords.join(", ")}</p>
+                                <p>{currentTopicData?.topic}</p>
                             </div>
                         </div>
                         <DataTable
                             columns={columns}
-                            data={records}
+                            data={currentTopicData?.records || []}
                             fixedHeader
                             className="custom-data-table"
+                        />
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            handlePageChange={handlePageChange}
                         />
                     </div>
                 </div>
