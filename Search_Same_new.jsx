@@ -85,7 +85,6 @@ function SearchSameNew() {
     };
 
     const handleThirdButtonClick = () => {
-        // Ваш код для третьей кнопки
     };
 
     const updateTopicsArray = (data) => {
