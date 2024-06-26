@@ -73,7 +73,7 @@ margin-left: 5%;
   font-family: 'Open Sans';
   padding: 3%;
   margin: 7% 12%;
-  background-color: #FFFFFF;
+  background: linear-gradient(to right, #E8EEFF 50%, #FFFFFF 50%);
 }
 .div_right-login{
   float: right;
