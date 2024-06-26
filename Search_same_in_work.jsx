@@ -9,7 +9,7 @@ import '../styles/Table_same.css';
 import Menu from "../pages/Menu.jsx"; 
 import Pagination from "../pages/Pagination.jsx"; 
 
-function SearchSameNew() {
+function SearchSameInWork() {
     const initialData = [
         { id: 1, date: '21.03.2024', name: 'Аноним', action: 'Просмотр', selected: false, keywords: ['Невкусный', 'кофе'] },
         { id: 2, date: '22.03.2024', name: 'Анатолий Некрасов', action: 'Просмотр', selected: false, keywords: ['Невкусный', 'кофе'] },
@@ -140,8 +140,8 @@ function SearchSameNew() {
                         </div>
                     </div>
                     <div className="data-section">
-                        <h1 className="custom-table-name">
-                            {currentTopicData?.topic}
+                        <div className="custom-table-name">
+                            Обращения в работе
                             <button
                                 className={`custom-icon-button ${iconActive ? 'active' : ''}`} 
                                 onClick={handleIconClick}
@@ -160,7 +160,7 @@ function SearchSameNew() {
                             <button className={`custom-third-button ${iconActive ? 'active' : ''}`} onClick={handleThirdButtonClick}>
                                 Ответить
                             </button>
-                        </h1>
+                        </div>
                         <div className="common-words-container">
                             <div className="icon-left">
                                 <LiaExclamationSolid size={80} style={{ color: '#F49981' }} />
@@ -188,4 +188,4 @@ function SearchSameNew() {
     );
 }
 
-export default SearchSameNew;
+export default SearchSameInWork;
