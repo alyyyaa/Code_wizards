@@ -130,12 +130,21 @@ function SearchSameNew() {
                     <div className="data-section">
                         <h1 className="custom-table-name">
                             Новые обращения
-                            <button className={`custom-icon-button ${iconActive ? 'active' : ''}`} onClick={handleIconClick}>
+                            <button
+                                className={`custom-icon-button ${iconActive ? 'active' : ''}`} 
+                                onClick={handleIconClick}
+                                title="Показать все обращения"
+                            >
                                 <CiViewList size={30} className="icon" />
                             </button>
-                            <button className={`custom-search-icon ${iconActive ? 'active' : ''}`} onClick={handleIconClick}>
+                            <button
+                                className={`custom-search-icon ${iconActive ? 'active' : ''}`}
+                                onClick={handleIconClick}
+                                title="Найти одинаковые обращения"
+                            >
                                 <IoIosSearch size={30} className="icon" />
                             </button>
+
                             <button className={`custom-third-button ${iconActive ? 'active' : ''}`} onClick={handleThirdButtonClick}>
                                 Ответить
                             </button>
