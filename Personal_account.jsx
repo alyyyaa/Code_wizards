@@ -29,24 +29,28 @@ function PersonalAccount() {
     const [recordsPerPage] = useState(5); 
     const [iconActive, setIconActive] = useState(false);
 
-    const placeholder = searchValue.length === 0 ? "Найти обращение..." : "";
+    function handleChange(event) {
+        setSearchValue(event.target.value);
+    }
 
+    const placeholder = searchValue.length === 0 ? "Найти обращение..." : "";
+    
     const columns = [
         { name: <span className="custom-table-header">Дата обращения</span>, selector: 'date', cell: row => <span className="custom-date-cell">{row.date}</span> },
         { name: <span className="custom-table-header">Отправитель</span>, selector: 'name', cell: row => <span className="custom-name-cell">{row.name}</span> },
         { name: <span className="custom-table-header">Действие</span>, cell: row => <Button variant="primary" className="custom-action-button">Просмотр</Button> }
     ];
 
-    const handleFilter = () => {
+    function handleFilter(event) {
+        const value = event.target.value.toLowerCase();
         const newData = data.filter(row =>
-            row.date.toLowerCase().includes(searchValue.toLowerCase()) ||
-            row.name.toLowerCase().includes(searchValue.toLowerCase())
+            row.date.toLowerCase().includes(value) ||
+            row.name.toLowerCase().includes(value)
         );
         setRecords(newData);
-    };
+    }
 
     const handleIconClick = () => {
-        
         setIconActive(!iconActive);
     };
 
@@ -59,23 +63,23 @@ function PersonalAccount() {
     const currentRecords = records.slice(indexOfFirstRecord, indexOfLastRecord);
 
     const totalPages = Math.ceil(records.length / recordsPerPage); // общее количество страниц
-
+    
     return (
-<div className="personal-account-container">
+        <div className="personal-account-container">
             <Menu/>
-             <div className="content-p">
-                 <div className='container mt-5'>
-                     <div className="header">
-                         <div className="left"></div>
-                         <div className="right">
-                    <input type="text" onChange={handleFilter} className="custom-search-input" placeholder={placeholder} />
-                    <button className="custom-search-button" onClick={handleFilter}>
-                           Поиск
-                         </button>
-                         </div>
-                     </div>
-                     <div className="data-section">
-                        <h1 className="custom-table-name">
+            <div className="content-p">
+                <div className='container mt-5'>
+                    <div className="header">
+                        <div className="left"></div>
+                        <div className="right">
+                            <input type="text" onChange={handleFilter} className="custom-search-input" placeholder={placeholder} />
+                            <button className="custom-search-button" onClick={handleFilter}>
+                                Поиск
+                            </button>
+                        </div>
+                    </div>
+                    <div className="data-section">
+                        <div className="custom-table-name">
                             Новые обращения
                             <button
                                 className={`custom-icon-button ${iconActive ? 'active' : ''}`} 
@@ -91,13 +95,12 @@ function PersonalAccount() {
                             >
                                 <IoIosSearch size={30} className="icon" />
                             </button>
-                        </h1>
+                        </div>
                         <DataTable
                             columns={columns}
                             data={currentRecords}
                             fixedHeader
                             className="custom-data-table"
-                            noPagination
                         />
                         <Pagination
                             currentPage={currentPage}
