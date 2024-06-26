@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head2 from "../views/global/global/Head2";
 import css from "../styles/Application.css";
 import { InputFile } from "../pages/InputFile.jsx";
@@ -29,6 +29,17 @@ class Main extends React.Component {
 const Application = () => {
     const [photo, setPhoto] = useState(null);
     const [inputValue, setInputValue] = useState("");
+
+    useEffect(() => {
+        // Добавляем класс к body при монтировании компонента
+        document.body.classList.add('application-background');
+
+        // Удаляем класс с body при размонтировании компонента
+        return () => {
+            document.body.classList.remove('application-background');
+        };
+    }, []);
+
     return (
         <div className="body11">
             <Main />
@@ -75,7 +86,7 @@ const Application = () => {
                 </form>
             </div>
         </div>
-    )
+    );
 }
 
 export default Application;
