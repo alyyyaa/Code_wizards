@@ -5,7 +5,7 @@ import { CiViewList } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 import '../styles/Personal_account.css';
 import '../styles/DataTable.css';
-import Menu from "../pages/Menu.jsx"; 
+import Menu from "../pages/Menu.jsx"
 import Pagination from "../pages/Pagination.jsx"; 
 
 function PersonalAccount() {
@@ -20,13 +20,13 @@ function PersonalAccount() {
         { id: 8, date: '28.03.2024', name: 'Ольга Ольгина', action: 'Просмотр' },
         { id: 9, date: '29.03.2024', name: 'Николай Николаев', action: 'Просмотр' },
         { id: 10, date: '30.03.2024', name: 'Александр Александров', action: 'Просмотр' },
-        { id: 11, date: '30.03.2024', name: 'Алексанр Александров', action: 'Просмотр' },
+        { id: 11, date: '30.03.2024', name: 'Александр Александров', action: 'Просмотр' },
     ];
 
     const [searchValue, setSearchValue] = useState("");
     const [records, setRecords] = useState(data);
     const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage] = useState(5); 
+    const [recordsPerPage] = useState(5);
     const [iconActive, setIconActive] = useState(false);
 
     function handleChange(event) {
@@ -34,7 +34,7 @@ function PersonalAccount() {
     }
 
     const placeholder = searchValue.length === 0 ? "Найти обращение..." : "";
-    
+
     const columns = [
         { name: <span className="custom-table-header">Дата обращения</span>, selector: 'date', cell: row => <span className="custom-date-cell">{row.date}</span> },
         { name: <span className="custom-table-header">Отправитель</span>, selector: 'name', cell: row => <span className="custom-name-cell">{row.name}</span> },
@@ -48,6 +48,7 @@ function PersonalAccount() {
             row.name.toLowerCase().includes(value)
         );
         setRecords(newData);
+        setCurrentPage(1); // Сброс текущей страницы на первую после фильтрации
     }
 
     const handleIconClick = () => {
@@ -63,10 +64,10 @@ function PersonalAccount() {
     const currentRecords = records.slice(indexOfFirstRecord, indexOfLastRecord);
 
     const totalPages = Math.ceil(records.length / recordsPerPage); // общее количество страниц
-    
+
     return (
         <div className="personal-account-container">
-            <Menu/>
+            <Menu />
             <div className="content-p">
                 <div className='container mt-5'>
                     <div className="header">
@@ -82,7 +83,7 @@ function PersonalAccount() {
                         <div className="custom-table-name">
                             Новые обращения
                             <button
-                                className={`custom-icon-button ${iconActive ? 'active' : ''}`} 
+                                className={`custom-icon-button ${iconActive ? 'active' : ''}`}
                                 onClick={handleIconClick}
                                 title="Показать все обращения"
                             >
