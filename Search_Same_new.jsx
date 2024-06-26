@@ -5,7 +5,7 @@ import { CiViewList } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 import { LiaExclamationSolid } from "react-icons/lia";
 import '../styles/Personal_account.css';
-import '../styles/Table_same.css';
+import '../styles/Table_Same.css';
 import Menu from "../pages/Menu.jsx"; 
 import Pagination from "../pages/Pagination.jsx"; 
 
