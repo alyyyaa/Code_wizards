@@ -5,7 +5,7 @@ import { CiViewList } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 import { LiaExclamationSolid } from "react-icons/lia";
 import '../styles/Personal_account.css';
-import '../styles/Table_Same.css';
+import '../styles/Table_same.css';
 import Menu from "../pages/Menu.jsx"; 
 import Pagination from "../pages/Pagination.jsx"; 
 
@@ -62,8 +62,8 @@ function SearchSameNew() {
             row.name.toLowerCase().includes(value)
         );
         setRecords(newData);
-        updateTopicsArray(newData);  
-        setCurrentPage(1);  
+        updateTopicsArray(newData);  // Обновляем topicsArray после фильтрации
+        setCurrentPage(1);  // Сбрасываем текущую страницу на первую
     }
 
     const handleIconClick = () => {
@@ -85,6 +85,7 @@ function SearchSameNew() {
     };
 
     const handleThirdButtonClick = () => {
+        // Ваш код для третьей кнопки
     };
 
     const updateTopicsArray = (data) => {
@@ -127,8 +128,8 @@ function SearchSameNew() {
                         </div>
                     </div>
                     <div className="data-section">
-                        <h1 className="custom-table-name">
-                            {currentTopicData?.topic}
+                        <div className="custom-table-name">
+                            Новые обращения
                             <button
                                 className={`custom-icon-button ${iconActive ? 'active' : ''}`} 
                                 onClick={handleIconClick}
@@ -147,7 +148,7 @@ function SearchSameNew() {
                             <button className={`custom-third-button ${iconActive ? 'active' : ''}`} onClick={handleThirdButtonClick}>
                                 Ответить
                             </button>
-                        </h1>
+                        </div>
                         <div className="common-words-container">
                             <div className="icon-left">
                                 <LiaExclamationSolid size={80} style={{ color: '#F49981' }} />
@@ -172,6 +173,7 @@ function SearchSameNew() {
                 </div>
             </div>
         </div>
+        
     );
 }
 
