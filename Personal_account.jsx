@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import DataTable from 'react-data-table-component';
-import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { SidebarData } from "./SidebarData";
-import { IoIosLogOut } from "react-icons/io";
 import { CiViewList } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 import '../styles/Personal_account.css';
 import '../styles/DataTable.css';
-import Pagination from './Pagination'; 
-import book from './book.png';
+import Menu from "../pages/Menu.jsx"; 
+import Pagination from "../pages/Pagination.jsx"; 
 
 function PersonalAccount() {
     const data = [
@@ -64,50 +61,20 @@ function PersonalAccount() {
     const totalPages = Math.ceil(records.length / recordsPerPage); // общее количество страниц
 
     return (
-        <div className="personal-account-container">
-            <nav className="nav-menu">
-                <div className="logo-container">
-                    <h1 className="logo">SecretVoice</h1>
-                </div>
-                <ul className="nav-menu-items">
-                    {SidebarData.map((item, index) => (
-                        <li key={index} className={item.cName} style={{ marginTop: item.marginTop || 0 }}>
-                            <Link to={item.path}>
-                                {item.icon}
-                                <span>{item.title}</span>
-                            </Link>
-                        </li>
-                    ))}
-                    <li className="nav-text" style={{ marginTop: '50px' }}>
-                        <Link to="/logout">
-                            <IoIosLogOut size={30} />
-                            <span>Выйти</span>
-                        </Link>
-                    </li>
-                    <li className="nav-image">
-                        <img src={book} alt="book" />
-                    </li>
-                </ul>
-            </nav>
-            <div className="content">
-                <div className='container mt-5'>
-                    <div className="header">
-                        <div className="left"></div>
-                        <div className="right">
-                            <input
-                                type="text"
-                                value={searchValue}
-                                onChange={(e) => setSearchValue(e.target.value)}
-                                className="custom-search-input"
-                                placeholder={placeholder}
-                            />
-
-                            <button className="custom-search-button" onClick={handleFilter}>
-                                Поиск
-                            </button>
-                        </div>
-                    </div>
-                    <div className="data-section">
+<div className="personal-account-container">
+            <Menu/>
+             <div className="content-p">
+                 <div className='container mt-5'>
+                     <div className="header">
+                         <div className="left"></div>
+                         <div className="right">
+                    <input type="text" onChange={handleFilter} className="custom-search-input" placeholder={placeholder} />
+                    <button className="custom-search-button" onClick={handleFilter}>
+                           Поиск
+                         </button>
+                         </div>
+                     </div>
+                     <div className="data-section">
                         <h1 className="custom-table-name">
                             Новые обращения
                             <button
