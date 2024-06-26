@@ -1,9 +1,14 @@
-.body11{
+.application-background {
+    background-color: #D3DEFE;
+    height: 100%;
     margin: 0;
     padding: 0;
-    width:100vw;
+    overflow: auto;
+}
+
+.body11 {
+    width: 100vw;
     height: 100vh;
-    background-color: #D3DEFE;
 }
     .container_fon {
         width:100%;
