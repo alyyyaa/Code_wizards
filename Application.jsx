@@ -5,13 +5,18 @@ import { InputFile } from "../pages/InputFile.jsx";
 import copy from './копирование.png';
 import Popup from 'reactjs-popup';
 import appl from './обращение.png';
+import plane from './plane1.png';
 import { MdFileDownload } from "react-icons/md"; 
 
 function Appl() {
     return (
         <img className="appl" src={appl} alt="Application" />
     );
+    return (
+        <img className="plane" src={plane} alt="plane" />
+    );
 }
+
 
 class Main extends React.Component {
     onclick() {
@@ -40,6 +45,11 @@ const Application = () => {
         };
     }, []);
 
+    function closeModal() {
+        document.querySelector('.modal').style.display = 'none';
+    }
+    
+
     return (
         <div className="body11">
             <Main />
@@ -64,6 +74,8 @@ const Application = () => {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
+                                            <button className="close" onClick={closeModal}>&times;</button>
+                                            <img src={plane} alt="plane" className="modal-image" />
                                             Спасибо за заявку!<br />
                                             Ваш ключ для просмотра обратной связи!
                                             <div className="d1">
@@ -72,9 +84,9 @@ const Application = () => {
                                                     <img src={copy} width="30" height="30" alt="Copy" />
                                                 </button>
                                             </div>
-                                            <Main />
                                         </div>
                                     </div>
+
                                 )
                             }
                         </Popup>
