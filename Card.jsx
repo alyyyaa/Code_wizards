@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
-const Card = () => {
-  // Данные по дням
-  const dailyRequests = [
-    { date: '1.05', count: 10 },
-    { date: '2.05', count: 20 },
-    { date: '3.05', count: 5 },
-    { date: '4.05', count: 15 }
-  ];
+const initialDailyRequests = [
+  { date: '2023-05-01', count: 10 },
+  { date: '2023-05-02', count: 20 },
+  { date: '2023-05-03', count: 5 },
+  { date: '2023-05-04', count: 15 },
+];
 
-  // Общее количество обращений
-  const totalRequests = dailyRequests.reduce((sum, day) => sum + day.count, 0);
+const Card = ({ startDate, endDate }) => {
+  const [dailyRequests, setDailyRequests] = useState(initialDailyRequests);
+  const [totalRequests, setTotalRequests] = useState(0);
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      filterData(startDate, endDate);
+    }
+  }, [startDate, endDate]);
+
+  const filterData = (start, end) => {
+    const filteredRequests = initialDailyRequests.filter(request => {
+      const requestDate = new Date(request.date);
+      return requestDate >= start && requestDate <= end;
+    });
+
+    setDailyRequests(filteredRequests);
+    setTotalRequests(filteredRequests.reduce((sum, day) => sum + day.count, 0));
+  };
 
   const data = {
     labels: dailyRequests.map(day => day.date),
