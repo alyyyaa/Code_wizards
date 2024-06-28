@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
-const Card1 = () => {
-  // Данные по дням
-  const dailyRequests = [
-    { date: '1.05', count: 0 },
-    { date: '2.05', count: 20 },
-    { date: '3.05', count: 5 },
-    { date: '4.05', count: 15 }
-  ];
+const initialDailyRequests = [
+  { date: '2023-05-01', count: 0 },
+  { date: '2023-05-02', count: 20 },
+  { date: '2023-05-03', count: 5 },
+  { date: '2023-05-04', count: 15 },
+];
 
-  const totalRequests = dailyRequests.reduce((sum, day) => sum + day.count, 0);
+const Card1 = ({ startDate, endDate }) => {
+  const [dailyRequests, setDailyRequests] = useState(initialDailyRequests);
+  const [totalRequests, setTotalRequests] = useState(0);
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      filterData(startDate, endDate);
+    }
+  }, [startDate, endDate]);
+
+  const filterData = (start, end) => {
+    const filteredRequests = initialDailyRequests.filter(request => {
+      const requestDate = new Date(request.date);
+      return requestDate >= start && requestDate <= end;
+    });
+
+    setDailyRequests(filteredRequests);
+    setTotalRequests(filteredRequests.reduce((sum, day) => sum + day.count, 0));
+  };
 
   const data = {
     labels: dailyRequests.map(day => day.date),
@@ -18,8 +34,8 @@ const Card1 = () => {
       {
         data: dailyRequests.map(day => day.count),
         fill: true,
-        backgroundColor: 'rgba(255, 234, 209, 0.2)', 
-        borderColor: '#F3CFBA', 
+        backgroundColor: 'rgba(255, 234, 209, 0.2)',
+        borderColor: '#F3CFBA',
         borderWidth: 2,
         pointRadius: 0,
       },
@@ -32,12 +48,12 @@ const Card1 = () => {
         display: false,
       },
       x: {
-        display: false, 
+        display: false,
       },
     },
     plugins: {
       legend: {
-        display: false, 
+        display: false,
       },
     },
     elements: {
@@ -58,7 +74,7 @@ const Card1 = () => {
       </div>
       <div style={{ fontSize: '30px', marginBottom: '29px' }}>{totalRequests}</div>
       <div style={{ fontSize: '15px', color: '#5A5A65' }}>Обращений отклонено</div>
-      <div style={{ marginTop: '20px', height: '100px', width: '100%', padding: 0 }}> 
+      <div style={{ marginTop: '20px', height: '100px', width: '100%', padding: 0 }}>
         <Line data={data} options={options} />
       </div>
     </div>
